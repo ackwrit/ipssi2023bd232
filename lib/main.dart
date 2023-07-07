@@ -34,13 +34,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+//variables
+TextEditingController mail = TextEditingController();
+TextEditingController password = TextEditingController();
+bool isConnected = true;
 
-  void _incrementCounter() {
-    setState(() {
 
-      _counter++;
-    });
+//fonctions
+  void popUpErreur(){
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: Text("Erreur"),
+            content: Text("Erreur dans votre saisie"),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("ok")
+              )
+            ],
+          );
+        }
+    );
   }
 
   @override
@@ -79,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(height: 10,),
                 //mail
                 TextField(
+                  controller: mail,
                   decoration: InputDecoration(
                     hintText: "Entrer votre mail",
                     prefixIcon: const Icon(Icons.mail),
@@ -92,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 //password
                 TextField(
+                  controller: password,
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: "Entrer votre password",
@@ -115,12 +136,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: const StadiumBorder()
                   ),
                     onPressed: (){
-                      print("connexion");
+                    if(isConnected){
                       Navigator.push(context, MaterialPageRoute(
                           builder: (context){
-                            return const DashBoard();
+                            return  DashBoard(password: password.text,);
                           }
                       ));
+                    }
+                    else
+                      {
+                        //afficher un pop d'erreur
+                        popUpErreur();
+                      }
+
+
                     },
                     child: const Text("Connexion")
                 )

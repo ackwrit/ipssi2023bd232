@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  String? mail;
+  String? password;
+  DashBoard({Key? key,this.mail,this.password}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();
@@ -13,7 +15,34 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      drawer: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width *0.45,
+        color: Colors.purple,
+        child: SafeArea(
+          child: Column(
+            children: [
+              //avatar circulaire
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+              ),
+
+              //nom prénom
+              Text("Djino Dissingar"),
+
+              //pseudo
+              Text("Skweel"),
+
+              //adresse mail
+              Text("dissingardjino@icloud.com")
+            ],
+          ),
+        ),
+      ),
+      appBar: AppBar(
+        title: Text(widget.password ??"J'ai pas tapé le password",),
+      ),
      
       body: SafeArea(child: bodyPage()),
       bottomNavigationBar: BottomNavigationBar(
@@ -24,7 +53,7 @@ class _DashBoardState extends State<DashBoard> {
           });
 
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.person),label: "Personnes"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite),label: "Favoris")
         ]
