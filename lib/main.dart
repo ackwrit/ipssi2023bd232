@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipssi_bd23_2/controller/my_animation.dart';
 import 'package:ipssi_bd23_2/view/dashboad_main.dart';
 
 void main() {
@@ -77,49 +78,62 @@ bool isConnected = true;
             child: Column(
               children: [
                 //image
-                Container(
-                  height: 200,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
-                      fit: BoxFit.fill
-                    )
-                  ),
+                MyAnimation(
+                    time: 1,
+                    child: Container(
+                      height: 200,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: const DecorationImage(
+                              image: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+                              fit: BoxFit.fill
+                          )
+                      ),
 
+                    )
                 ),
+
                 const SizedBox(height: 5,),
                 //texte descriptif
-                const Text("Ma première application",
-                  style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,),
+                MyAnimation(
+                  time: 2,
+                  child: const Text("Ma première application",
+                    style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,),
+                ),
 
                 const SizedBox(height: 10,),
                 //mail
-                TextField(
-                  controller: mail,
-                  decoration: InputDecoration(
-                    hintText: "Entrer votre mail",
-                    prefixIcon: const Icon(Icons.mail),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    )
+                MyAnimation(
+                  time: 3,
+                  child: TextField(
+                    controller: mail,
+                    decoration: InputDecoration(
+                      hintText: "Entrer votre mail",
+                      prefixIcon: const Icon(Icons.mail),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)
+                      )
+                    ),
                   ),
                 ),
 
                 const SizedBox(height: 10,),
 
                 //password
-                TextField(
-                  controller: password,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      hintText: "Entrer votre password",
-                      prefixIcon: const Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)
-                      )
+                MyAnimation(
+                  time: 4,
+                  child: TextField(
+                    controller: password,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        hintText: "Entrer votre password",
+                        prefixIcon: const Icon(Icons.lock),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15)
+                        )
+                    ),
                   ),
                 ),
 
@@ -129,29 +143,32 @@ bool isConnected = true;
 
                 //bouton
 
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
-                    elevation: 10,
-                    shape: const StadiumBorder()
-                  ),
-                    onPressed: (){
-                    if(isConnected){
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context){
-                            return  DashBoard(password: password.text,);
-                          }
-                      ));
-                    }
-                    else
-                      {
-                        //afficher un pop d'erreur
-                        popUpErreur();
+                MyAnimation(
+                  time: 5,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
+                      elevation: 10,
+                      shape: const StadiumBorder()
+                    ),
+                      onPressed: (){
+                      if(isConnected){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context){
+                              return  DashBoard(password: password.text,);
+                            }
+                        ));
                       }
+                      else
+                        {
+                          //afficher un pop d'erreur
+                          popUpErreur();
+                        }
 
 
-                    },
-                    child: const Text("Connexion")
+                      },
+                      child: const Text("Connexion")
+                  ),
                 )
               ],
             ),
