@@ -19,25 +19,53 @@ class _DashBoardState extends State<DashBoard> {
     return Scaffold(
       drawer: Container(
         height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width *0.45,
+        width: MediaQuery.of(context).size.width *0.75,
         color: Colors.purple,
         child: SafeArea(
           child: Column(
-            children: const [
+            children:  [
               //avatar circulaire
-              CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 42,
+                    child : CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+                    ),
+                  ),
+
+                  Column(
+                    children:  [
+                      Text("Djino Dissingar",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
+                      SizedBox(height: 5,),
+                      Row(
+                        children: [
+                          Text("Skweel",style: TextStyle(fontSize: 18,color: Colors.white,fontStyle: FontStyle.italic),),
+                          IconButton(
+                              onPressed: (){
+                                print("modification pseudo");
+
+                              },
+                              icon: const FaIcon(FontAwesomeIcons.pencil,color: Colors.white,size: 15,)
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
+              const Divider(thickness: 2,color: Colors.black,),
+              const SizedBox(height: 10,),
 
-              //nom prénom
-              Text("Djino Dissingar"),
 
-              //pseudo
-              Text("Skweel"),
 
-              //adresse mail
-              Text("dissingardjino@icloud.com")
+             ListTile(
+               leading: Icon(Icons.mail,color: Colors.white,),
+               title: Text("dissingardjino@icloud.com",style: TextStyle(color: Colors.white,fontSize: 15),),
+             ),
             ],
           ),
         ),
