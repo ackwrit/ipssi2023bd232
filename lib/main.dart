@@ -189,8 +189,8 @@ bool isConnected = true;
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text("Erreur"),
-            content: Text("Erreur dans votre saisie"),
+            title: Text("Erreur de saisie"),
+            content: Lottie.asset("assets/fail.json"),
             actions: [
               TextButton(
                   onPressed: (){
