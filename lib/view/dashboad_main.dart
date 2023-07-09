@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ipssi_bd23_2/view/background_view.dart';
 
 class DashBoard extends StatefulWidget {
   String? mail;
@@ -21,7 +23,7 @@ class _DashBoardState extends State<DashBoard> {
         color: Colors.purple,
         child: SafeArea(
           child: Column(
-            children: [
+            children: const [
               //avatar circulaire
               CircleAvatar(
                 radius: 60,
@@ -41,10 +43,33 @@ class _DashBoardState extends State<DashBoard> {
         ),
       ),
       appBar: AppBar(
-        title: Text(widget.password ??"J'ai pas tapé le password",),
+        toolbarHeight: 80,
+
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+                onPressed: (){
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const FaIcon(FontAwesomeIcons.bars)
+            );
+          }
+
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.amber,
      
-      body: SafeArea(child: bodyPage()),
+      body: Stack(
+        children: [
+          const BackgroundView(),
+          SafeArea(
+              child: bodyPage()
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: indexMenu,
         onTap: (value){
@@ -53,6 +78,9 @@ class _DashBoardState extends State<DashBoard> {
           });
 
         },
+
+
+
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.person),label: "Personnes"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite),label: "Favoris")
