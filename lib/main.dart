@@ -326,18 +326,16 @@ bool isConnected = true;
                               shape: const StadiumBorder()
                           ),
                           onPressed: (){
-                            if(isConnected){
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context){
-                                    return  DashBoard(password: password.text,);
-                                  }
-                              ));
-                            }
-                            else
-                            {
-                              //afficher un pop d'erreur
-                              popUpErreur();
-                            }
+                         FirestoreHelper().connect(mail.text, password.text).then((value){
+                           Chargement();
+                           setState(() {
+                             moi = value;
+                           });
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=> DashBoard()));
+
+                         }).catchError((onError){
+                           popUpErreur();
+                         });
 
 
                           },
