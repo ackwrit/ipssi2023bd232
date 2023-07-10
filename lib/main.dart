@@ -179,7 +179,7 @@ bool isConnected = true;
                   onPressed: (){
                   FirestoreHelper().register(nom.text, prenom.text, mail.text, password.text).then((value){
                     ScaffoldMessenger.of(context).clearSnackBars();
-                    Chargement();
+
                     setState(() {
                       moi = value;
                     });
@@ -327,7 +327,7 @@ bool isConnected = true;
                           ),
                           onPressed: (){
                          FirestoreHelper().connect(mail.text, password.text).then((value){
-                           Chargement();
+
                            setState(() {
                              moi = value;
                            });

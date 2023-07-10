@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ipssi_bd23_2">
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
    <application
         android:label="ipssi_bd23_2"
         android:name="${applicationName}"
