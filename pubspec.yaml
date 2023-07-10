@@ -41,6 +41,8 @@ dependencies:
   cloud_firestore: ^4.8.2
   font_awesome_flutter:
   lottie:
+  file_picker:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:

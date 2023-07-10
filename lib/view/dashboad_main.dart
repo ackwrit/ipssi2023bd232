@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ipssi_bd23_2/controller/constante.dart';
@@ -29,12 +30,19 @@ class _DashBoardState extends State<DashBoard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 42,
-                    child : CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(moi.avatar ?? defaultImage),
+                  InkWell(
+                    onTap: (){
+                      FilePicker.platform.pickFiles(
+                        type: FileType.image
+                      );
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 42,
+                      child : CircleAvatar(
+                        radius: 40,
+                        backgroundImage: NetworkImage(moi.avatar ?? defaultImage),
+                      ),
                     ),
                   ),
 
@@ -44,7 +52,7 @@ class _DashBoardState extends State<DashBoard> {
                       const SizedBox(height: 5,),
                       Row(
                         children: [
-                          Text("Skweel",style: TextStyle(fontSize: 18,color: Colors.white,fontStyle: FontStyle.italic),),
+                          Text(moi.pseudo!,style: TextStyle(fontSize: 18,color: Colors.white,fontStyle: FontStyle.italic),),
                           IconButton(
                               onPressed: (){
                                 print("modification pseudo");
