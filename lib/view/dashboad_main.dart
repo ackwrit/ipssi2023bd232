@@ -40,7 +40,7 @@ class _DashBoardState extends State<DashBoard> {
                   Column(
                     children:  [
                       Text("Djino Dissingar",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
-                      SizedBox(height: 5,),
+                      const SizedBox(height: 5,),
                       Row(
                         children: [
                           Text("Skweel",style: TextStyle(fontSize: 18,color: Colors.white,fontStyle: FontStyle.italic),),
