@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
 
 class DashBoard extends StatefulWidget {
@@ -28,18 +29,18 @@ class _DashBoardState extends State<DashBoard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 42,
                     child : CircleAvatar(
                       radius: 40,
-                      backgroundImage: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+                      backgroundImage: NetworkImage(moi.avatar ?? defaultImage),
                     ),
                   ),
 
                   Column(
                     children:  [
-                      Text("Djino Dissingar",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
+                      Text(moi.fullName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
                       const SizedBox(height: 5,),
                       Row(
                         children: [
@@ -64,7 +65,7 @@ class _DashBoardState extends State<DashBoard> {
 
              ListTile(
                leading: Icon(Icons.mail,color: Colors.white,),
-               title: Text("dissingardjino@icloud.com",style: TextStyle(color: Colors.white,fontSize: 15),),
+               title: Text(moi.email,style: TextStyle(color: Colors.white,fontSize: 15),),
              ),
             ],
           ),

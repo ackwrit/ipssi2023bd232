@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/controller/my_animation.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
@@ -74,7 +75,7 @@ bool isConnected = true;
         barrierDismissible: false,
         builder: (context){
 
-          if(Platform.isIOS){
+          if(defaultTargetPlatform == TargetPlatform.iOS){
             return  CupertinoAlertDialog(
               content: Container(
                 child: Lottie.asset("assets/connection-data.json")
@@ -176,10 +177,20 @@ bool isConnected = true;
                   backgroundColor: Colors.amber
                 ),
                   onPressed: (){
-                      ScaffoldMessenger.of(context).clearSnackBars();
+                  FirestoreHelper().register(nom.text, prenom.text, mail.text, password.text).then((value){
+                    ScaffoldMessenger.of(context).clearSnackBars();
+                    Chargement();
+                    setState(() {
+                      moi = value;
+                    });
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoard()));
+                  }).catchError((onError){
+                    popUpErreur();
+                  });
 
 
-                        Chargement();
+
+
 
                   },
                   child: const Text("S'inscrire",style: TextStyle(color: Colors.white),)
@@ -341,7 +352,7 @@ bool isConnected = true;
                       child: TextButton(
                           onPressed: (){
                               ScaffoldMessenger.of(context).showSnackBar(SnackShow());
-                              FirestoreHelper().register(nom.text, prenom.text, mail.text, password.text);
+
                           },
                           child: const Text("Inscription")
                       ),
