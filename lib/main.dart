@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/controller/my_animation.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
 import 'package:ipssi_bd23_2/view/dashboad_main.dart';
@@ -340,6 +341,7 @@ bool isConnected = true;
                       child: TextButton(
                           onPressed: (){
                               ScaffoldMessenger.of(context).showSnackBar(SnackShow());
+                              FirestoreHelper().register(nom.text, prenom.text, mail.text, password.text);
                           },
                           child: const Text("Inscription")
                       ),
