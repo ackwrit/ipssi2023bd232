@@ -26,6 +26,9 @@ class FirestoreHelper {
   }
 
   //connexion
+  connect(String email, String password){
+    auth.signInWithEmailAndPassword(email: email, password: password);
+  }
 
 
 
