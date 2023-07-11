@@ -22,7 +22,7 @@ class _MyMapViewState extends State<MyMapView> {
           }
           else {
             Position locationPosition = snap.data!;
-            return const DataMaps();
+            return DataMaps(position: locationPosition,);
           }
         }
     );
