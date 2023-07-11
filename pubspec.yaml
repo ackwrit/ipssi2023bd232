@@ -43,6 +43,7 @@ dependencies:
   lottie:
   file_picker:
   permission_handler:
+  geolocator:
 
 dev_dependencies:
   flutter_test:

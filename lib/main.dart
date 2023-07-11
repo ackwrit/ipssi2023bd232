@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/controller/my_animation.dart';
+import 'package:ipssi_bd23_2/controller/permission_photo.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
 import 'package:ipssi_bd23_2/view/dashboad_main.dart';
 import 'package:lottie/lottie.dart';
@@ -13,10 +14,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  PermissionPhoto().init();
   runApp(const MyApp());
 }
 
