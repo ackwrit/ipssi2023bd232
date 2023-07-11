@@ -29,8 +29,10 @@ class _DataMapsState extends State<DataMaps> {
   Widget build(BuildContext context) {
     return GoogleMap(
       myLocationEnabled: true,
-      onMapCreated: (controller){
-         completer.complete(controller);
+      onMapCreated: (controller) async{
+        String newStyle = await DefaultAssetBundle.of(context).loadString("lib/mapstyle.json");
+        controller.setMapStyle(newStyle);
+        completer.complete(controller);
       },
         initialCameraPosition: camera,
 
