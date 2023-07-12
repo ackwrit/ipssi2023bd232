@@ -27,23 +27,43 @@ class _AllPersonState extends State<AllPerson> {
                itemCount: documents!.length,
                  itemBuilder: (context,index){
                  Utilisateur lesAutres = Utilisateur(documents[index]);
-                 return Card(
-                   elevation: 10,
-                   color: Colors.white,
-                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                   child: ListTile(
-                     leading: CircleAvatar(
-                       radius: 60,
-                       backgroundImage: NetworkImage(lesAutres.avatar ?? defaultImage),
-                     ),
-                     title: Text(lesAutres.fullName),
-                     subtitle: Text(lesAutres.email,textAlign: TextAlign.start,),
-                     trailing: IconButton(
-                       onPressed: (){
+                 return Dismissible(
+                   key: Key(lesAutres.uid),
+                   child: Card(
+                     elevation: 10,
+                     color: Colors.white,
+                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                     child: ListTile(
+                       leading: CircleAvatar(
+                         radius: 60,
+                         backgroundImage: NetworkImage(lesAutres.avatar ?? defaultImage),
+                       ),
+                       title: Text(lesAutres.fullName),
+                       subtitle: Text(lesAutres.email,textAlign: TextAlign.start,),
+                       trailing: (moi.favoris!.contains(lesAutres.uid))?IconButton(
+                         onPressed: (){
+                           setState(() {
+                             moi.favoris!.remove(lesAutres.uid);
+                           });
+                           Map<String,dynamic> map = {
+                             "FAVORIS":moi.favoris
+                           };
+                           FirestoreHelper().updateUser(moi.uid, map);
+                         },
+                         icon : const Icon(Icons.favorite),color: Colors.red,):IconButton(
+                         onPressed: (){
+                           setState(() {
+                             moi.favoris!.add(lesAutres.uid);
+                           });
+                           Map<String,dynamic> map = {
+                             "FAVORIS":moi.favoris
+                           };
+                           FirestoreHelper().updateUser(moi.uid, map);
 
-                       },
-                       icon: const Icon(Icons.favorite),
+                         },
+                         icon: const Icon(Icons.favorite),
 
+                       ),
                      ),
                    ),
                  );

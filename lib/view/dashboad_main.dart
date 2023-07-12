@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ipssi_bd23_2/controller/all_favoris.dart';
 import 'package:ipssi_bd23_2/controller/all_personn.dart';
 import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
@@ -216,7 +217,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget bodyPage(){
     switch(indexMenu){
       case 0 : return const AllPerson();
-      case 1 : return Text("Favoris");
+      case 1 : return const AllFavoris();
       case 2: return const MyMapView();
       default: return Text("Erreur");
     }
